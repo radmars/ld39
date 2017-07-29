@@ -20,7 +20,7 @@ public class Mover : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        Vector3 movement = transform.forward * forward * speed * Time.deltaTime;
+        Vector3 movement = (transform.right * sideways + transform.forward * forward).normalized * speed * Time.deltaTime;
         Debug.Log("" + transform.forward + " " + forward+ " " +speed + " " + Time.deltaTime);
 
         // Apply this movement to the rigidbody's position.
