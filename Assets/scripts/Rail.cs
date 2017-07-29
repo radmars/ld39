@@ -31,8 +31,7 @@ public class Rail : MonoBehaviour
                 pos = CatmullPosition(seg, ratio);
                 break;
         }
-        Physics.Raycast(new Ray(pos, Vector3.down), out hit, float.PositiveInfinity);
-        Debug.Log(hit.point);
+        Physics.Raycast(new Ray(pos + Vector3.up, Vector3.down), out hit, float.PositiveInfinity);
         return hit.point;
     }
 
@@ -63,7 +62,6 @@ public class Rail : MonoBehaviour
         }
         else
         {
-            Debug.Log("In the x in rail");
             p1 = nodes[seg - 1].position;
             p2 = nodes[seg].position;
             p3 = nodes[seg + 1].position;
