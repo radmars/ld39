@@ -19,14 +19,21 @@ public class Rail : MonoBehaviour
 
     public Vector3 PositionOnRail(int seg, float ratio, PlayMode mode)
     {
+        RaycastHit hit;
+        Vector3 pos;
         switch (mode)
         {
             default:
             case PlayMode.Linear:
-                return LinearPosition(seg, ratio);
+                pos = LinearPosition(seg, ratio);
+                break;
             case PlayMode.Catmull:
-                return CatmullPosition(seg, ratio);
+                pos = CatmullPosition(seg, ratio);
+                break;
         }
+        Physics.Raycast(new Ray(pos, Vector3.down), out hit, float.PositiveInfinity);
+        Debug.Log(hit.point);
+        return hit.point;
     }
 
     public Vector3 LinearPosition(int seg, float ratio)
@@ -96,7 +103,7 @@ public class Rail : MonoBehaviour
 
         return Quaternion.Lerp(q1, q2, ratio);
     }
-    private void OnDrawGismos()
+    private void OnDrawGizmos()
     {
         for (int i = 0; i < nodes.Length - 1; i++)
         {
