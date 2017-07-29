@@ -27,6 +27,13 @@ public class CameraControl : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        var camera = GetComponent<Camera>();
+        camera.targetTexture.width = 320;
+        camera.targetTexture.height= 240;
+    }
+
     /// <summary>
     /// Update method
     /// </summary>
