@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Critter : MonoBehaviour
 {
+    public string name;
+    public float points;
     private void Start()
     {
         GetComponent<MeshRenderer>().enabled = false;
+        gameObject.tag = "Critter";
     }
 
     private void OnDrawGizmos()
