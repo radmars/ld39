@@ -1,19 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    Mover rover;
     float lastSpawnTime;
-    public Critter[] critterPrefabs;
+    int critterMask;
+    public int spawnRadius = 30;
 
     void Start()
     {
-        rover = FindObjectOfType<Mover>();
+        critterMask = LayerMask.GetMask("Critters");
     }
 
     bool ShouldSpawn(float lastSpawnTime, float now)
     {
-        return (now - lastSpawnTime > 5)
+        return (now - lastSpawnTime > 1)
             && (Random.Range(0, 10) > 1);
     }
 
@@ -21,33 +22,35 @@ public class Spawner : MonoBehaviour
     {
         if (ShouldSpawn(lastSpawnTime, Time.time))
         {
-        Debug.Log("Check check?");
-            lastSpawnTime = Time.time;
-            SpawnACritter();
+            var near = GetRandomInactiveCritter(spawnRadius);
+            if (near)
+            {
+                lastSpawnTime = Time.time;
+                SpawnACritter(near);
+            }
         }
     }
 
-    void SpawnACritter()
+    private void OnDrawGizmos()
     {
-        // Pick a random place around the rover
-        var around = Random.insideUnitCircle.normalized;
-        // Offset from the player
-        var offset = rover.transform.position + new Vector3(around.x, around.y);
-        // Scale to a range away from the player 
-        offset *= Random.Range(20, 40);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
+    }
 
-        // Scan for terrain
-        var heightTestRay = new Ray(
-            new Vector3(offset.x, offset.y) + new Vector3(0, 100),
-            Vector3.down
-        );
-
-        RaycastHit collision;
-        if (Physics.Raycast(heightTestRay, out collision, float.MaxValue, LayerMask.GetMask("Terrain")))
+    private Collider GetRandomInactiveCritter(int radius)
+    {
+        var nearbyCritters = Physics.SphereCastAll(transform.position, radius, Vector3.up, Mathf.Infinity, critterMask);
+        nearbyCritters = nearbyCritters.Where((hit) => !hit.collider.GetComponent<MeshRenderer>().enabled).ToArray();
+        if (nearbyCritters.Length > 0)
         {
-            var prefab = critterPrefabs[Random.Range(0, critterPrefabs.Length)];
-            var instance = Instantiate(prefab);
-            instance.transform.position = collision.point;
+            return nearbyCritters[Random.Range(0, nearbyCritters.Length)].collider;
         }
+        return null;
+
+    }
+
+    void SpawnACritter(Collider c)
+    {
+        c.gameObject.SendMessage("ActivateCritter");
     }
 }

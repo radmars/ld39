@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Critter : MonoBehaviour {
+public class Critter : MonoBehaviour
+{
+    private void Start()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.5F);
+        Gizmos.DrawCube(transform.position, new Vector3(1, 1, 1));
+    }
+
+    public void ActivateCritter()
+    {
+        GetComponent<MeshRenderer>().enabled = true;
+    }
 }

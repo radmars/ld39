@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4495077989210482}
   - component: {fileID: 33277071950039576}
   - component: {fileID: 23631491583884028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4926690147154868}
   - component: {fileID: 33408635921507586}
   - component: {fileID: 23151035547312408}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid6 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4303869896471806}
   - component: {fileID: 33070987277703468}
   - component: {fileID: 23047980716302600}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4953953860238816}
   - component: {fileID: 33372606554180794}
   - component: {fileID: 23623809025827080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,8 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4854132293545258}
   - component: {fileID: 95700328094017556}
-  - component: {fileID: 114817802224050012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: world_test_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +105,7 @@ GameObject:
   - component: {fileID: 4136893424730308}
   - component: {fileID: 33337058612481992}
   - component: {fileID: 23932501969516370}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +122,7 @@ GameObject:
   - component: {fileID: 4805807116204744}
   - component: {fileID: 33476643501002282}
   - component: {fileID: 23364065878048290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +139,7 @@ GameObject:
   - component: {fileID: 4984479137234854}
   - component: {fileID: 33117149180626940}
   - component: {fileID: 23435574078209156}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +156,7 @@ GameObject:
   - component: {fileID: 4386008913118964}
   - component: {fileID: 33693757188104922}
   - component: {fileID: 23667473295408078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +174,7 @@ GameObject:
   - component: {fileID: 33990094598329040}
   - component: {fileID: 23219486370340556}
   - component: {fileID: 64526420005698746}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +191,7 @@ GameObject:
   - component: {fileID: 4996523254571588}
   - component: {fileID: 33622252280422626}
   - component: {fileID: 23246447156749548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +208,7 @@ GameObject:
   - component: {fileID: 4689981598119540}
   - component: {fileID: 33753326967122464}
   - component: {fileID: 23341627724046626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grid7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,17 +842,3 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114817802224050012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1310265214788416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f440d6543c813044dae71f2b71dca4cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  critterPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}

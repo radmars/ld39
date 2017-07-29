@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4286668476927916}
-  - component: {fileID: 114249857944827016}
   - component: {fileID: 54255768987250708}
-  - component: {fileID: 114246062307019692}
   - component: {fileID: 114509769088266356}
+  - component: {fileID: 114488735396782520}
+  - component: {fileID: 114940606807147418}
   m_Layer: 0
   m_Name: Rover
   m_TagString: Untagged
@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 92357981155272928}
   - component: {fileID: 124997781227266656}
   - component: {fileID: 81569145565928274}
+  - component: {fileID: 114259527126408208}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -122,8 +123,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1074768100701226}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.91617966, z: -0, w: 0.40076795}
+  m_LocalPosition: {x: 5.84, y: 0.44, z: 5.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4639632200529750}
@@ -132,7 +133,7 @@ Transform:
   - {fileID: 4053010440411146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -132.748, z: 0}
 --- !u!4 &4350386810113306
 Transform:
   m_ObjectHideFlags: 1
@@ -366,12 +367,12 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236866168120466}
   m_Enabled: 1
---- !u!114 &114246062307019692
+--- !u!114 &114259527126408208
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1074768100701226}
+  m_GameObject: {fileID: 1236866168120466}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a44081f8885ce24d8eb3b9c12ff2554, type: 3}
@@ -379,7 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowCurser: 0
   Sensitivity: 1
---- !u!114 &114249857944827016
+--- !u!114 &114488735396782520
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -387,10 +388,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1074768100701226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b6b5a5077271584f8520c3062b7dfe6, type: 3}
+  m_Script: {fileID: 11500000, guid: 013afc7840c835b459d86fbfa5c9b932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  rail: {fileID: 0}
+  mode: 1
+  speed: 2.51
 --- !u!114 &114509769088266356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -404,6 +407,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshairScale: 5
   crosshairTexture: {fileID: 0}
+--- !u!114 &114940606807147418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074768100701226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f440d6543c813044dae71f2b71dca4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRadius: 20
 --- !u!124 &124997781227266656
 Behaviour:
   m_ObjectHideFlags: 1
