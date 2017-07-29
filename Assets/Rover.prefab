@@ -20,6 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4286668476927916}
   - component: {fileID: 114249857944827016}
+  - component: {fileID: 54255768987250708}
+  - component: {fileID: 114246062307019692}
+  - component: {fileID: 114509769088266356}
   m_Layer: 0
   m_Name: Rover
   m_TagString: Untagged
@@ -322,6 +325,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1656586225560056}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54255768987250708
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074768100701226}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65113220015640362
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -348,6 +366,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236866168120466}
   m_Enabled: 1
+--- !u!114 &114246062307019692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074768100701226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a44081f8885ce24d8eb3b9c12ff2554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowCurser: 0
+  Sensitivity: 1
 --- !u!114 &114249857944827016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -359,6 +390,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6b5a5077271584f8520c3062b7dfe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+--- !u!114 &114509769088266356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074768100701226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff36946bf11cd6418215401e22b6cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshairScale: 5
+  crosshairTexture: {fileID: 0}
 --- !u!124 &124997781227266656
 Behaviour:
   m_ObjectHideFlags: 1
