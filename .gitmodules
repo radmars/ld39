@@ -1,0 +1,3 @@
+[submodule "Assets/psx_retroshader"]
+	path = Assets/psx_retroshader
+	url = git@github.com:dsoft20/psx_retroshader.git
