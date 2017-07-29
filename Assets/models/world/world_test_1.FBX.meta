@@ -17,6 +17,8 @@ ModelImporter:
     100018: grid9
     100020: start
     100022: //RootNode
+    100024: Box002
+    100026: Mesh001
     400000: grid1
     400002: grid10
     400004: grid2
@@ -29,6 +31,8 @@ ModelImporter:
     400018: grid9
     400020: start
     400022: //RootNode
+    400024: Box002
+    400026: Mesh001
     2300000: grid1
     2300002: grid10
     2300004: grid2
@@ -41,6 +45,8 @@ ModelImporter:
     2300018: grid9
     2300020: start
     2300022: //RootNode
+    2300024: Box002
+    2300026: Mesh001
     3300000: grid1
     3300002: grid10
     3300004: grid2
@@ -53,6 +59,8 @@ ModelImporter:
     3300018: grid9
     3300020: start
     3300022: //RootNode
+    3300024: Box002
+    3300026: Mesh001
     4300000: start
     4300002: grid1
     4300004: grid2
@@ -64,6 +72,8 @@ ModelImporter:
     4300016: grid8
     4300018: grid9
     4300020: grid10
+    4300022: Box002
+    4300024: Mesh001
     9500000: //RootNode
   materials:
     importMaterials: 1
