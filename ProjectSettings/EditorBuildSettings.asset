@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/rad intro.unity
+    guid: f8a18bd3200ef74478ec4abfab16e3f9
+  - enabled: 1
+    path: Assets/the greatest scene.unity
+    guid: 5e72d1096e457ef41a8afe7dccb7f182
+  - enabled: 1
+    path: Assets/splash-menu.unity
+    guid: e4b8a5bbb0802834fa48de445cabf4d6

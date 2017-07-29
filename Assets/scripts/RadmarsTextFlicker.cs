@@ -15,7 +15,6 @@ public class RadmarsTextFlicker : MonoBehaviour
         SetActive(mars);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.anyKey)
@@ -50,6 +49,6 @@ public class RadmarsTextFlicker : MonoBehaviour
 
     void FinishIntro()
     {
-        SceneManager.LoadScene("the greatest scene", LoadSceneMode.Single);
+        SceneManager.LoadScene("splash-menu", LoadSceneMode.Single);
     }
 }
