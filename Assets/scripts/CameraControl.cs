@@ -14,7 +14,7 @@ public class CameraControl : MonoBehaviour
     /// <summary>
     /// The sensitivity
     /// </summary>
-    public float Sensitivity;
+    public float Sensitivity = 1;
 
     /// <summary>
     /// The start method
