@@ -32,15 +32,28 @@ public class TakePicture : MonoBehaviour
 
         if (visibleCritters.Count() > 0)
         {
-            foreach (var critter in critters)
-            {
+            //start with photo as value 0 as "best picture"
+            var bestCrit = visibleCritters.First();
+            var bestShot = new Shot();
+            bestShot.snapshot = TakeSnapshot(camera.GetComponent<Camera>());
+            bestShot.value = 0;
+
+
+            //Iterate through each one and see which picture is the best
+            foreach (var critter in visibleCritters)
+            {     
                 var s = new Shot();
-                s.value = critter.CalculatePoints(gameObject);
-                s.snapshot = TakeSnapshot(camera.GetComponent<Camera>());
-                album.AddShot(critter, s);
-                //SceneManager.LoadScene("shot-selector");
-                Debug.Log("That picture would be worth: " + critter.CalculatePoints(camera) + " points");
+                s.value = critter.CalculatePoints(gameObject, visibleCritters.Count());
+                if(s.value > bestShot.value)
+                {
+                    bestCrit = critter;
+                    bestShot.value = s.value;                   
+                }
             }
+
+            album.AddShot(bestCrit, bestShot);
+            //SceneManager.LoadScene("shot-selector");
+            Debug.Log("That picture would be worth: " + bestCrit.CalculatePoints(camera, visibleCritters.Count()) + " points");
         }
     }
 
