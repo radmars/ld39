@@ -918,6 +918,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 612009448}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &707196360 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1236866168120466, guid: 339e86b25323bac4298d76050c5e4160,
+    type: 2}
+  m_PrefabInternal: {fileID: 1610870627}
+--- !u!114 &707196368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 707196360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4116ae079ee6324598fe65b9e095f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &735493077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,15 +1946,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4286668476927916, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4286668476927916, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4286668476927916, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4286668476927916, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1994,6 +2010,58 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639632200529750, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350386810113306, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770167817637614, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.092
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.297
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.0008016842
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.008028894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.005172613
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.9999541
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.097
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053010440411146, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.592
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114660951743736032, guid: 339e86b25323bac4298d76050c5e4160, type: 2}

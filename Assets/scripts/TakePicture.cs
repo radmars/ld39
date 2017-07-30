@@ -27,7 +27,7 @@ public class TakePicture : MonoBehaviour
         { //If there are no visible critters
             foreach (var critter in critters)
             {
-                Debug.Log(critter);
+                Debug.Log("That picture would be worth: " + critter.CalculatePoints(gameObject)  + " points you fuckhead!");
             }
         }
     }
