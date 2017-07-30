@@ -14,8 +14,12 @@ public class ScoreTable : MonoBehaviour
     private int visibleIndex;
     private Shot current;
 
+    public AudioClip[] clips;
+    private AudioSource audioSource;
+
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         album = Album.FindMe();
         var finalText = "";
         double total = 0;
@@ -64,6 +68,10 @@ public class ScoreTable : MonoBehaviour
         {
             visibleIndex = album.selected.Count() - 1;
         }
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+
         visibleIndex %= album.selected.Count();
         current = album.selected[visibleIndex];
         UpdateScreen();
@@ -72,8 +80,11 @@ public class ScoreTable : MonoBehaviour
     void UpdateScreen()
     {
         var text = current.snapshot;
-        snapshotRenderer.sprite = Sprite.Create(text, new Rect(0, 0, text.width, text.height), new Vector2(0.5f, 0.5f));
-        snapshotRenderer.sprite.texture.filterMode = FilterMode.Point;
+        if (text)
+        {
+            snapshotRenderer.sprite = Sprite.Create(text, new Rect(0, 0, text.width, text.height), new Vector2(0.5f, 0.5f));
+            snapshotRenderer.sprite.texture.filterMode = FilterMode.Point;
+        }
         nameText.text = current.critter;
         scoreTableText.text = "SHOT RECIPT: \n";
         scoreTableText.text += "CENTERED: " + current.score.center + "\n";
