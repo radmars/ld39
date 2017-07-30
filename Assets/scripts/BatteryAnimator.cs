@@ -24,7 +24,7 @@ public class BatteryAnimator : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("shot-selector");
+           // SceneManager.LoadScene("shot-selector");
         }
     }
 }
