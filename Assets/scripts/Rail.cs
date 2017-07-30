@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System.Linq;
 
 public enum PlayMode
 {
@@ -8,13 +9,12 @@ public enum PlayMode
     Catmull,
 }
 
-[ExecuteInEditMode]
 public class Rail : MonoBehaviour
 {
     public Transform[] nodes;
     private void Start()
     {
-        nodes = GetComponentsInChildren<Transform>();
+        nodes = GetComponentsInChildren<Transform>().Where( q => q.tag == "Nodes").ToArray();
     }
 
     public Vector3 PositionOnRail(int seg, float ratio, PlayMode mode)

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Critter
+  - Nodes
   layers:
   - Default
   - TransparentFX
