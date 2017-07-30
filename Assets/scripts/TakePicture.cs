@@ -53,7 +53,7 @@ public class TakePicture : MonoBehaviour
 
             album.AddShot(bestCrit, bestShot);
             //SceneManager.LoadScene("shot-selector");
-            Debug.Log("That picture would be worth: " + bestCrit.CalculatePoints(camera, visibleCritters.Count()) + " points");
+            Debug.Log("That picture of a " + bestCrit.name + " would be worth: " + bestCrit.CalculatePoints(camera, visibleCritters.Count()) + " points");
         }
     }
 

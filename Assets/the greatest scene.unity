@@ -1532,7 +1532,7 @@ GameObject:
   - component: {fileID: 851200554}
   m_Layer: 9
   m_Name: CubeCritterPatrol
-  m_TagString: Critter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1559,7 +1559,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 851200548}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -2088,9 +2088,10 @@ GameObject:
   - component: {fileID: 1159364498}
   - component: {fileID: 1159364497}
   - component: {fileID: 1159364496}
+  - component: {fileID: 1159364499}
   m_Layer: 9
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Critter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2159,6 +2160,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1159364494}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1159364499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1159364494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37af7e9ffb52e0a49abc9349f74820fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  points: 0
+  DistanceModifier: 1
+  CenterModifier: 1
+  FacingModifier: 1
 --- !u!1 &1213868453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,40 +2439,22 @@ GameObject:
   m_Component:
   - component: {fileID: 1267434364}
   - component: {fileID: 1267434363}
-  - component: {fileID: 1267434362}
   - component: {fileID: 1267434361}
-  - component: {fileID: 1267434360}
   - component: {fileID: 1267434365}
   m_Layer: 9
-  m_Name: CubeCritter (2)
-  m_TagString: Critter
+  m_Name: CubeCritterCircle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1267434360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1267434359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6291cb92c28ac546bd92435d30cc226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
-  points: 0
-  DistanceModifier: 1
-  CenterModifier: 1
-  FacingModifier: 1
 --- !u!23 &1267434361
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1267434359}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -2481,18 +2480,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1267434362
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1267434359}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1267434363
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2507,7 +2494,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1267434359}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.839, y: -1.12, z: -15.461}
+  m_LocalPosition: {x: -12.839, y: -1.22, z: -15.461}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2072509013}
@@ -3481,11 +3468,10 @@ GameObject:
   - component: {fileID: 1797945000}
   - component: {fileID: 1797944999}
   - component: {fileID: 1797944998}
-  - component: {fileID: 1797944997}
   - component: {fileID: 1797944996}
   m_Layer: 9
   m_Name: CubeCritterWalk
-  m_TagString: Critter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3507,29 +3493,13 @@ MonoBehaviour:
   isLooping: 0
   returns: 0
   speed: 3
---- !u!114 &1797944997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1797944995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6291cb92c28ac546bd92435d30cc226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: 
-  points: 0
-  DistanceModifier: 1
-  CenterModifier: 1
-  FacingModifier: 1
 --- !u!23 &1797944998
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1797944995}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -3569,7 +3539,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1797944995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.58, y: -1.7, z: -4.11}
+  m_LocalPosition: {x: -9.58, y: -1.64, z: -4.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2108994267}
@@ -4126,9 +4096,10 @@ GameObject:
   - component: {fileID: 2072509016}
   - component: {fileID: 2072509015}
   - component: {fileID: 2072509014}
+  - component: {fileID: 2072509017}
   m_Layer: 9
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Critter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4140,7 +4111,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2072509012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.43, z: 0}
+  m_LocalPosition: {x: 0, y: 0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1267434364}
@@ -4197,6 +4168,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2072509012}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2072509017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2072509012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f365bf92700599145858a49ca89e880e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  points: 0
+  DistanceModifier: 1
+  CenterModifier: 1
+  FacingModifier: 1
 --- !u!1 &2095944217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4277,9 +4264,10 @@ GameObject:
   - component: {fileID: 2108994270}
   - component: {fileID: 2108994269}
   - component: {fileID: 2108994268}
+  - component: {fileID: 2108994271}
   m_Layer: 9
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Critter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4291,7 +4279,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2108994266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.72, z: 0}
+  m_LocalPosition: {x: 0, y: 0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1797945000}
@@ -4348,6 +4336,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2108994266}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2108994271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2108994266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a8e9a93d6db664ebe72940ffe2a8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  points: 0
+  DistanceModifier: 1
+  CenterModifier: 1
+  FacingModifier: 1
 --- !u!1 &2113504833
 GameObject:
   m_ObjectHideFlags: 0
