@@ -615,6 +615,8 @@ MonoBehaviour:
   isLooping: 1
   returns: 0
   speed: 2.5
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 1
 --- !u!23 &225223475
 MeshRenderer:
@@ -1869,6 +1871,8 @@ MonoBehaviour:
   isLooping: 1
   returns: 1
   speed: 5
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 1
 --- !u!23 &466417360
 MeshRenderer:
@@ -3658,6 +3662,8 @@ MonoBehaviour:
   isLooping: 1
   returns: 1
   speed: 5
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 1
 --- !u!1 &866724267
 GameObject:
@@ -5056,6 +5062,8 @@ MonoBehaviour:
   isLooping: 0
   returns: 0
   speed: 2.5
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 1
 --- !u!23 &1180680517
 MeshRenderer:
@@ -5759,6 +5767,8 @@ MonoBehaviour:
   isLooping: 1
   returns: 0
   speed: 2.5
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 1
 --- !u!1 &1296652389
 GameObject:
@@ -7541,7 +7551,7 @@ Prefab:
     - target: {fileID: 114488735396782520, guid: 339e86b25323bac4298d76050c5e4160,
         type: 2}
       propertyPath: speed
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 136594575686390084, guid: 339e86b25323bac4298d76050c5e4160,
         type: 2}
@@ -7674,6 +7684,16 @@ Prefab:
         type: 2}
       propertyPath: grounded
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114488735396782520, guid: 339e86b25323bac4298d76050c5e4160,
+        type: 2}
+      propertyPath: minSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114488735396782520, guid: 339e86b25323bac4298d76050c5e4160,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114660951743736032, guid: 339e86b25323bac4298d76050c5e4160, type: 2}
@@ -7816,6 +7836,8 @@ MonoBehaviour:
   isLooping: 1
   returns: 1
   speed: 2.5
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 1
 --- !u!23 &1621675902
 MeshRenderer:
@@ -8159,6 +8181,8 @@ MonoBehaviour:
   isLooping: 1
   returns: 1
   speed: 4
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 0
 --- !u!1 &1730719092
 GameObject:
@@ -8629,6 +8653,8 @@ MonoBehaviour:
   isLooping: 0
   returns: 0
   speed: 3
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 1
 --- !u!23 &1797944998
 MeshRenderer:
@@ -10042,7 +10068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites: []
   timeToDrain: 300
-  startTime: 0
+  startTime: 1
 --- !u!212 &2008522721
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10754,6 +10780,8 @@ MonoBehaviour:
   isLooping: 1
   returns: 0
   speed: 2
+  minSpeed: 2.5
+  maxSpeed: 5
   grounded: 1
 --- !u!23 &2125142335
 MeshRenderer:

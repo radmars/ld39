@@ -14,6 +14,10 @@ public class RailMover : MonoBehaviour
     public bool returns;
 
     public float speed = 2.5f;
+    
+    public float minSpeed = 2.5f;
+
+    public float maxSpeed = 5f;
 
     private int currentSeg;
 
@@ -32,6 +36,21 @@ public class RailMover : MonoBehaviour
 
         if (!isCompleted)
             Play(!isReversed);
+
+        if(name == "Rover" && Input.GetButton("Fire2"))
+        {
+            Debug.Log("ZOOOOOMMMM!!!!");
+            if(speed < maxSpeed)
+            {
+                speed += .1f;
+            }            
+        }
+        else{
+            if(speed >minSpeed)
+            {
+                speed -=0.1f;
+            }
+        }
     }
 
     private void Play(bool forward = true)

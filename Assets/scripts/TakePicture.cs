@@ -11,7 +11,7 @@ public class TakePicture : MonoBehaviour
     private GameObject camera;
     private Album album;
 
-    private int pictureCount = 0;
+    private int picturesLeft = 100;
 
     void Start()
     {
@@ -28,8 +28,10 @@ public class TakePicture : MonoBehaviour
         if (!Input.GetButtonDown("Fire1"))
             return;
 
+        
+
         Debug.Log("Click");
-        pictureCount++;
+        picturesLeft--;
 
         visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), camera.GetComponent<Camera>()));
 
@@ -41,7 +43,7 @@ public class TakePicture : MonoBehaviour
             var bestShot = new Shot();
             bestShot.snapshot = TakeSnapshot(camera.GetComponent<Camera>());
             bestShot.value = 0;
-            Debug.Log(pictureCount + ": Visible critter count: " + visibleCritters.Count());
+            Debug.Log(picturesLeft + ": Visible critter count: " + visibleCritters.Count());
 
             //Iterate through each one and see which picture is the best
             foreach (var critter in visibleCritters)
@@ -58,6 +60,11 @@ public class TakePicture : MonoBehaviour
             album.AddShot(bestCrit, bestShot);
             //SceneManager.LoadScene("shot-selector");
             Debug.Log("That picture of a " + bestCrit.name + " would be worth: " + bestCrit.CalculatePoints(camera, visibleCritters.Count()) + " points");
+        }
+
+        if(picturesLeft <=0)
+        {
+            SceneManager.LoadScene("shot-selector");
         }
     }
 
