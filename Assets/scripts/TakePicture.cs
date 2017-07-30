@@ -1,22 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using UnityEngine.SceneManagement;
 
 public class TakePicture : MonoBehaviour
 {
     private IEnumerable<Critter> critters;
     private IEnumerable<Critter> visibleCritters;
-    private GameObject camera;
+    private Camera roverCamera;
     private Album album;
-
-    private int picturesLeft = 100;
+    private BatteryAnimator battery;
 
     void Start()
     {
         album = Album.FindMe();
-        camera = GameObject.Find("Rover Camera");
+        battery = GameObject.Find("Battery").GetComponent<BatteryAnimator>();
+        roverCamera = GameObject.Find("Rover Camera").GetComponent<Camera>();
         critters = GameObject.FindGameObjectsWithTag("Critter").Select(
             (gameObject) => gameObject.GetComponent<Critter>()
         );
@@ -28,43 +26,26 @@ public class TakePicture : MonoBehaviour
         if (!Input.GetButtonDown("Fire1"))
             return;
 
-        
+        battery.PhotoTaken();
 
-        Debug.Log("Click");
-        picturesLeft--;
-
-        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), camera.GetComponent<Camera>()));
-
+        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), roverCamera.GetComponent<Camera>()));
 
         if (visibleCritters.Count() > 0)
         {
             //start with photo as value 0 as "best picture"
-            var bestCrit = visibleCritters.First();
-            var bestShot = new Shot();
-            bestShot.snapshot = TakeSnapshot(camera.GetComponent<Camera>());
-            bestShot.value = 0;
-            Debug.Log(picturesLeft + ": Visible critter count: " + visibleCritters.Count());
+            var snapshot = TakeSnapshot(roverCamera.GetComponent<Camera>());
+            var visibleCount = visibleCritters.Count();
+            Debug.Log("Visible critter count: " + visibleCount);
 
-            //Iterate through each one and see which picture is the best
-            foreach (var critter in visibleCritters)
+            var bestShot = visibleCritters.Select((critter) => new Shot()
             {
-                var s = new Shot();
-                s.value = critter.CalculatePoints(gameObject, visibleCritters.Count());
-                if (s.value > bestShot.value)
-                {
-                    bestCrit = critter;
-                    bestShot.value = s.value;
-                }
-            }
+                critter = critter,
+                score = critter.CalculatePoints(gameObject, visibleCount),
+                snapshot = snapshot,
+            }).OrderByDescending((shot) => shot.score.total).First();
 
-            album.AddShot(bestCrit, bestShot);
-            //SceneManager.LoadScene("shot-selector");
-            Debug.Log("That picture of a " + bestCrit.name + " would be worth: " + bestCrit.CalculatePoints(camera, visibleCritters.Count()) + " points");
-        }
-
-        if(picturesLeft <=0)
-        {
-            SceneManager.LoadScene("shot-selector");
+            album.AddShot(bestShot.critter, bestShot);
+            Debug.Log("That picture of a " + bestShot.critter.name + " would be worth: " + bestShot.score.total);
         }
     }
 
@@ -90,6 +71,5 @@ public class TakePicture : MonoBehaviour
         }
 
         return false;
-        //
     }
 }
