@@ -42,7 +42,7 @@ public class AlbumUI : MonoBehaviour
     float lastScroll;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         float x = GetFurthestAxis("Horizontal", "Mouse X");
         if (!Mathf.Approximately(0f, x) && Time.fixedTime - lastScroll > .250)
