@@ -1,14 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using UnityEngine.SceneManagement;
 
 public class TakePicture : MonoBehaviour
 {
     private IEnumerable<Critter> critters;
     private IEnumerable<Critter> visibleCritters;
+    private Camera camera;
+    private Album album;
 
     void Start()
     {
+        album = Album.FindMe();
+        camera = GameObject.Find("Rover Camera").GetComponent<Camera>();
         critters = GameObject.FindGameObjectsWithTag("Critter").Select(
             (gameObject) => gameObject.GetComponent<Critter>()
         );
@@ -21,16 +27,31 @@ public class TakePicture : MonoBehaviour
             return;
 
         Debug.Log("Click");
-        
-        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), GameObject.Find("Rover Camera").GetComponent<Camera>()));
+
+        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), camera));
 
         if (visibleCritters.Count() > 0)
-        { //If there are no visible critters
+        {
             foreach (var critter in critters)
             {
-                Debug.Log("That picture would be worth: " + critter.CalculatePoints(gameObject)  + " points you fuckhead!");
+                var s = new Shot();
+                s.value = critter.CalculatePoints(gameObject);
+                s.snapshot = TakeSnapshot(camera);
+                album.AddShot(critter, s);
+               // SceneManager.LoadScene("shot-selector");
+                Debug.Log("That picture would be worth: " + critter.CalculatePoints(gameObject) + " points you fuckhead!");
             }
         }
+    }
+
+    private Texture2D TakeSnapshot(Camera camera)
+    {
+        RenderTexture.active = camera.targetTexture;
+        Texture2D text = new Texture2D(RenderTexture.active.width, RenderTexture.active.height);
+        text.ReadPixels(new Rect(0, 0, text.width, text.height), 0, 0);
+        text.Apply();
+        RenderTexture.active = null;
+        return text;
     }
 
     public bool IsVisibleFrom(Renderer renderer, Camera camera)

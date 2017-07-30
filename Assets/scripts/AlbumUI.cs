@@ -10,10 +10,11 @@ public class AlbumUI : MonoBehaviour
     public ArrowButton right;
     public TextMesh nameText;
     public TextMesh shotText;
+    public SpriteRenderer snapshotRenderer;
     private Album album;
 
     private string currentCritter;
-    private int[] currentShots;
+    private List<Shot> currentShots;
     private int visibleIndex;
 
     // Use this for initialization
@@ -26,12 +27,13 @@ public class AlbumUI : MonoBehaviour
     bool ShowNextCritter()
     {
         var shots = album.shots;
+        visibleIndex = 0;
         if (shots.Count > 0)
         {
             currentCritter = shots.Keys.First();
             currentShots = shots[currentCritter];
             shots.Remove(currentCritter);
-            UpdateText();
+            UpdateScreen();
             return true;
         }
         return false;
@@ -73,16 +75,19 @@ public class AlbumUI : MonoBehaviour
         }
         if(visibleIndex < 0 )
         {
-            visibleIndex = currentShots.Length - 1;
+            visibleIndex = currentShots.Count() - 1;
         }
-        visibleIndex %= currentShots.Length;
-        UpdateText();
+        visibleIndex %= currentShots.Count();
+        UpdateScreen();
     }
 
-    void UpdateText()
+    void UpdateScreen()
     {
+        var text = currentShots[visibleIndex].snapshot;
+        snapshotRenderer.sprite = Sprite.Create(text, new Rect(0, 0, text.width, text.height), new Vector2(0.5f, 0.5f));
+        snapshotRenderer.sprite.texture.filterMode = FilterMode.Point;
         nameText.text = currentCritter;
-        shotText.text = "" + (visibleIndex + 1) + "/" + currentShots.Length;
+        shotText.text = "" + (visibleIndex + 1) + "/" + currentShots.Count();
     }
 
     float GetFurthestAxis(string a, string b)

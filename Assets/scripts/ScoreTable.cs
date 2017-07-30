@@ -12,11 +12,11 @@ public class ScoreTable : MonoBehaviour
     {
         album = Album.FindMe();
         var finalText = "";
-        int total = 0;
+        double total = 0;
         foreach (var critter in album.selected.Keys)
         {
-            finalText += critter + ": $" + album.selected[critter] + "\n";
-            total += album.selected[critter];
+            finalText += critter + ": $" + album.selected[critter].value + "\n";
+            total += album.selected[critter].value;
         }
         scoreTableText.text = finalText;
         totalText.text = "" + total;

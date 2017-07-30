@@ -1,17 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Album : MonoBehaviour
 {
     // TODO: Repalce INT with picture/metadata
-    public Dictionary<string, int[]> shots = new Dictionary<string, int[]>
-        {
-            { "Bubba Feet", new int[] { 1, 2, 3 } },
-            { "Robby Mars", new int[] { 1, 2 } }
-        };
+    public Dictionary<string, List<Shot>> shots = new Dictionary<string, List<Shot>>();
 
-    public Dictionary<string, int> selected = new Dictionary<string, int>();
+    public Dictionary<string, Shot> selected = new Dictionary<string, Shot>();
 
     public static Album FindMe()
     {
@@ -31,5 +28,14 @@ public class Album : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    internal void AddShot(Critter critter, Shot s)
+    {
+        if(!shots.ContainsKey(critter.name))
+        {
+            shots[critter.name] = new List<Shot>();
+        }
+        shots[critter.name].Add(s);
     }
 }
