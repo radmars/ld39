@@ -1,20 +1,25 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using UnityEngine.SceneManagement;
 
 public class TakePicture : MonoBehaviour
 {
     private IEnumerable<Critter> critters;
     private IEnumerable<Critter> visibleCritters;
-    private Camera roverCamera;
+    private GameObject camera;
+
+    private Vector3 cameraDefaultLoc;
     private Album album;
-    private BatteryAnimator battery;
+
+    private int picturesLeft = 100;
 
     void Start()
     {
         album = Album.FindMe();
-        battery = GameObject.Find("Battery").GetComponent<BatteryAnimator>();
-        roverCamera = GameObject.Find("Rover Camera").GetComponent<Camera>();
+        camera = GameObject.Find("Rover Camera");
+        cameraDefaultLoc = camera.transform.localPosition;
         critters = GameObject.FindGameObjectsWithTag("Critter").Select(
             (gameObject) => gameObject.GetComponent<Critter>()
         );
@@ -23,29 +28,79 @@ public class TakePicture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButton("Fire3"))
+        {
+            Debug.Log("should move camera Local rotation y is:  " + camera.transform.localEulerAngles.y);
+            if (camera.transform.localPosition.z + 0.4f < cameraDefaultLoc.z + 3.1f)
+                camera.transform.localPosition = new Vector3(camera.transform.localPosition.x, camera.transform.localPosition.y, camera.transform.localPosition.z + .04f);
+            if (camera.transform.localEulerAngles.y < 170f)
+            {
+                Debug.Log("should move positive camera turn");
+                camera.transform.localEulerAngles = new Vector3(camera.transform.localEulerAngles.x, camera.transform.localEulerAngles.y + 2f, camera.transform.localEulerAngles.z);
+            }
+            if (camera.transform.localEulerAngles.y > 190f)
+            {
+                Debug.Log("should move negative camera turn");
+                camera.transform.localEulerAngles = new Vector3(camera.transform.localEulerAngles.x, camera.transform.localEulerAngles.y - 2f, camera.transform.localEulerAngles.z);
+            }
+        }
+        else
+        {
+            if (camera.transform.localPosition.z - 0.4f > cameraDefaultLoc.z)
+            {
+                camera.transform.localPosition = new Vector3(camera.transform.localPosition.x, camera.transform.localPosition.y, camera.transform.localPosition.z - .04f);
+
+                if (camera.transform.localEulerAngles.y < 350f && camera.transform.localEulerAngles.y >= 180f)
+                {
+                    Debug.Log("should move positive camera turn");
+                    camera.transform.localEulerAngles = new Vector3(camera.transform.localEulerAngles.x, camera.transform.localEulerAngles.y + 2f, camera.transform.localEulerAngles.z);
+                }
+                if (camera.transform.localEulerAngles.y > 10f && camera.transform.localEulerAngles.y <180f)
+                {
+                    Debug.Log("should move negative camera turn");
+                    camera.transform.localEulerAngles = new Vector3(camera.transform.localEulerAngles.x, camera.transform.localEulerAngles.y - 2f, camera.transform.localEulerAngles.z);
+                }
+            }
+        }
+
         if (!Input.GetButtonDown("Fire1"))
             return;
 
-        battery.PhotoTaken();
+        Debug.Log("Click");
+        picturesLeft--;
 
-        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), roverCamera.GetComponent<Camera>()));
+        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), camera.GetComponent<Camera>()));
+
 
         if (visibleCritters.Count() > 0)
         {
             //start with photo as value 0 as "best picture"
-            var snapshot = TakeSnapshot(roverCamera.GetComponent<Camera>());
-            var visibleCount = visibleCritters.Count();
-            Debug.Log("Visible critter count: " + visibleCount);
+            var bestCrit = visibleCritters.First();
+            var bestShot = new Shot();
+            bestShot.snapshot = TakeSnapshot(camera.GetComponent<Camera>());
+            bestShot.value = 0;
+            Debug.Log(picturesLeft + ": Visible critter count: " + visibleCritters.Count());
 
-            var bestShot = visibleCritters.Select((critter) => new Shot()
+            //Iterate through each one and see which picture is the best
+            foreach (var critter in visibleCritters)
             {
-                critter = critter,
-                score = critter.CalculatePoints(gameObject, visibleCount),
-                snapshot = snapshot,
-            }).OrderByDescending((shot) => shot.score.total).First();
+                var s = new Shot();
+                s.value = critter.CalculatePoints(gameObject, visibleCritters.Count());
+                if (s.value > bestShot.value)
+                {
+                    bestCrit = critter;
+                    bestShot.value = s.value;
+                }
+            }
 
-            album.AddShot(bestShot.critter, bestShot);
-            Debug.Log("That picture of a " + bestShot.critter.name + " would be worth: " + bestShot.score.total);
+            album.AddShot(bestCrit, bestShot);
+            //SceneManager.LoadScene("shot-selector");
+            Debug.Log("That picture of a " + bestCrit.name + " would be worth: " + bestCrit.CalculatePoints(camera, visibleCritters.Count()) + " points");
+        }
+
+        if (picturesLeft <= 0)
+        {
+            SceneManager.LoadScene("shot-selector");
         }
     }
 
@@ -71,5 +126,6 @@ public class TakePicture : MonoBehaviour
         }
 
         return false;
+        //
     }
 }

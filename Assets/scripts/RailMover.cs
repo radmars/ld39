@@ -38,8 +38,7 @@ public class RailMover : MonoBehaviour
             Play(!isReversed);
 
         if(name == "Rover" && Input.GetButton("Fire2"))
-        {
-            Debug.Log("ZOOOOOMMMM!!!!");
+        { 
             if(speed < maxSpeed)
             {
                 speed += .1f;
