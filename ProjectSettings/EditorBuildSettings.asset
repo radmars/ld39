@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/shot-selector.unity
     guid: 6ef4f3bd082428348a9c90dfdecff606
+  - enabled: 1
+    path: Assets/score-screen.unity
+    guid: 010360a8c608f774f9c11ef28a8b88d9
