@@ -14,10 +14,10 @@ public class Rail : MonoBehaviour
     public Transform[] nodes;
     private void Start()
     {
-        nodes = GetComponentsInChildren<Transform>().Where( q => q.tag == "Nodes").ToArray();
+        nodes = GetComponentsInChildren<Transform>().Where(q => q.tag == "Nodes").ToArray();
     }
 
-    public Vector3 PositionOnRail(int seg, float ratio, PlayMode mode)
+    public Vector3 PositionOnRail(int seg, float ratio, PlayMode mode, bool grounded)
     {
         RaycastHit hit;
         Vector3 pos;
@@ -31,8 +31,14 @@ public class Rail : MonoBehaviour
                 pos = CatmullPosition(seg, ratio);
                 break;
         }
-        Physics.Raycast(new Ray(pos + Vector3.up, Vector3.down), out hit, float.PositiveInfinity);
-        return hit.point;
+        if (grounded)
+        {
+            Physics.Raycast(new Ray(pos + Vector3.up, Vector3.down), out hit, float.PositiveInfinity);
+            return hit.point;
+        }
+        else{
+            return pos;
+        }
     }
 
     public Vector3 LinearPosition(int seg, float ratio)
