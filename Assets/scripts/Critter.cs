@@ -5,7 +5,7 @@ using UnityEngine;
 public class Critter : MonoBehaviour
 {
     public string name;
-    public float points;
+    public double points;
     private void Start()
     {
         GetComponent<MeshRenderer>().enabled = false;
@@ -21,5 +21,19 @@ public class Critter : MonoBehaviour
     public void ActivateCritter()
     {
         GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    public double CalculatePoints(GameObject player)
+    {
+        var picValue = points;
+
+       var distance = Vector3.Distance(transform.position, player.transform.position);
+        
+        Debug.Log(distance);
+        
+           
+            picValue = picValue * (.02 * (100 - distance));
+        
+        return picValue;
     }
 }

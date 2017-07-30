@@ -9,9 +9,4 @@ public class Slug : Critter
          base.name = "Slug";
          base.points = 100;
     }
-
-    public float GetPoints()
-    {
-        return points;
-    }
 }
