@@ -51,10 +51,10 @@ public class AlbumUI : MonoBehaviour
             lastScroll = Time.fixedTime;
         }
 
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            album.selected.Add(currentCritter, currentShots[visibleIndex]);
-            if(!ShowNextCritter())
+            album.selected.Add(currentShots[visibleIndex]);
+            if (!ShowNextCritter())
             {
                 SceneManager.LoadScene("score-screen");
             }
@@ -73,7 +73,7 @@ public class AlbumUI : MonoBehaviour
             left.Flash();
             visibleIndex--;
         }
-        if(visibleIndex < 0 )
+        if (visibleIndex < 0)
         {
             visibleIndex = currentShots.Count() - 1;
         }
