@@ -1280,7 +1280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderTexture: {fileID: 8400000, guid: edbbf506366615842b4bbf42bc09b8cc, type: 2}
-  uiTexture: {fileID: 0}
+  uiTexture: {fileID: 8400000, guid: 7f58444fccb97d642b6fe35693cdc4b0, type: 2}
 --- !u!92 &366874770
 Behaviour:
   m_ObjectHideFlags: 0
@@ -10066,7 +10066,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52677c9a7ddf7d43a00cf019cf6ba5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites: []
+  sprites:
+  - {fileID: 21300000, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300002, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300004, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300006, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300008, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300010, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300012, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300014, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300016, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300018, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300020, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300022, guid: db619cab10891d54faa3558d2758f215, type: 3}
+  - {fileID: 21300024, guid: db619cab10891d54faa3558d2758f215, type: 3}
   timeToDrain: 300
   startTime: 1
 --- !u!212 &2008522721
