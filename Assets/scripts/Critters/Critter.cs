@@ -15,7 +15,7 @@ public class Critter : MonoBehaviour
     public double FacingModifier = 1;
     private void Start()
     {
-        GetComponent<MeshRenderer>().enabled = false;
+        //GetComponent<MeshRenderer>().enabled = false;
         gameObject.tag = "Critter";
     }
 
