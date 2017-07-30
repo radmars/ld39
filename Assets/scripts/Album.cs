@@ -8,12 +8,14 @@ public class Album : MonoBehaviour
     // TODO: Repalce INT with picture/metadata
     public Dictionary<string, List<Shot>> shots = new Dictionary<string, List<Shot>>();
 
-    public Dictionary<string, Shot> selected = new Dictionary<string, Shot>();
+    public List<Shot> selected = new List<Shot>();
 
     public static Album FindMe()
     {
         return FindObjectOfType<Album>();
     }
+
+    public Texture2D placeholder;
 
     public void Reset()
     {
@@ -32,7 +34,7 @@ public class Album : MonoBehaviour
 
     internal void AddShot(Critter critter, Shot s)
     {
-        if(!shots.ContainsKey(critter.name))
+        if (!shots.ContainsKey(critter.name))
         {
             shots[critter.name] = new List<Shot>();
         }

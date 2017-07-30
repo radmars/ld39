@@ -1,24 +1,92 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Linq;
 
 public class ScoreTable : MonoBehaviour
 {
     private Album album;
+    public TextMesh nameText;
     public TextMesh scoreTableText;
     public TextMesh totalText;
+    public ArrowButton left;
+    public ArrowButton right;
+    public SpriteRenderer snapshotRenderer;
+
+    private int visibleIndex;
+    private Shot current;
 
     void Awake()
     {
         album = Album.FindMe();
         var finalText = "";
         double total = 0;
-        foreach (var critter in album.selected.Keys)
+        foreach (var shot in album.selected)
         {
-            finalText += critter + ": $" + album.selected[critter].score.total + "\n";
-            total += album.selected[critter].score.total;
+            finalText += shot.critter.name + ": $" + shot.score.total + "\n";
+            total += shot.score.total;
         }
         scoreTableText.text = finalText;
         totalText.text = "" + total;
+
+        var shots = album.selected;
+        visibleIndex = 0;
+        if (shots.Count > 0)
+        {
+            current = shots[visibleIndex];
+            UpdateScreen();
+        }
     }
 
+    float lastScroll;
+
+    void Update()
+    {
+        float x = GetFurthestAxis("Horizontal", "Mouse X");
+        if (!Mathf.Approximately(0f, x) && Time.fixedTime - lastScroll > .250)
+        {
+            Go(x > 0);
+            lastScroll = Time.fixedTime;
+        }
+    }
+
+    void Go(bool next)
+    {
+        if (next)
+        {
+            right.Flash();
+            visibleIndex++;
+        }
+        else
+        {
+            left.Flash();
+            visibleIndex--;
+        }
+        if(visibleIndex < 0 )
+        {
+            visibleIndex = album.selected.Count() - 1;
+        }
+        visibleIndex %= album.selected.Count();
+        current = album.selected[visibleIndex];
+        UpdateScreen();
+    }
+
+    void UpdateScreen()
+    {
+        var text = current.snapshot;
+        snapshotRenderer.sprite = Sprite.Create(text, new Rect(0, 0, text.width, text.height), new Vector2(0.5f, 0.5f));
+        snapshotRenderer.sprite.texture.filterMode = FilterMode.Point;
+        nameText.text = current.critter.name;
+        scoreTableText.text = "SHOT RECIPT: \n";
+        scoreTableText.text += "CENTERED: " + current.score.center + "\n";
+        scoreTableText.text += "DISTANCE: " + current.score.distance + "\n";
+        scoreTableText.text += "FACING: " + current.score.facing + "\n";
+        scoreTableText.text += "SELFIE: " + " NOT YET " + "\n";
+        scoreTableText.text += "TOTAL: " + current.score.total;
+    }
+
+    float GetFurthestAxis(string a, string b)
+    {
+        float aa = Input.GetAxis(a);
+        float ba = Input.GetAxis(b);
+        return (Mathf.Abs(aa) < Mathf.Abs(ba)) ? ba : aa;
+    }
 }
