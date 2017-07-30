@@ -21,7 +21,8 @@ public class TakePicture : MonoBehaviour
             return;
 
         Debug.Log("Click");
-        visibleCritters = critters.Where((critter) => critter.GetComponent<MeshRenderer>().isVisible);
+        
+        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), GameObject.Find("Rover Camera").GetComponent<Camera>()));
 
         if (visibleCritters.Count() > 0)
         { //If there are no visible critters
@@ -30,5 +31,11 @@ public class TakePicture : MonoBehaviour
                 Debug.Log("That picture would be worth: " + critter.CalculatePoints(gameObject)  + " points you fuckhead!");
             }
         }
+    }
+
+    public bool IsVisibleFrom(Renderer renderer, Camera camera)
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+        return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
     }
 }
