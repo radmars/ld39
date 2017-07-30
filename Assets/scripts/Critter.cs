@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Critter : MonoBehaviour
 {
     public string name;
     public double points;
+
+    public double DistanceModifier = .0125;
+
+    public double CenterModifier = .0125;
+
+    public double FacingModifier = 1;
     private void Start()
     {
         GetComponent<MeshRenderer>().enabled = false;
@@ -27,13 +34,24 @@ public class Critter : MonoBehaviour
     {
         var picValue = points;
 
-       var distance = Vector3.Distance(transform.position, player.transform.position);
+        //Distance from player
+        var distance = Vector3.Distance(transform.position, player.transform.position);
+        //Debug.Log("points for distance :" + (points * (DistanceModifier * (1 - Mathf.Clamp(distance, 0, 40)/20))));
+        if (distance < 25)
+        {
+            picValue = picValue + (points * (DistanceModifier * (1 - Mathf.Clamp(distance, 0, 40)/20)));
+        }
         
-        Debug.Log(distance);
-        
-           
-            picValue = picValue * (.02 * (100 - distance));
-        
+        //how close to center of the screen
+        float center = Math.Abs(Vector3.Angle(player.transform.forward, transform.position - player.transform.position));
+        //Debug.Log("Points for Angle off from center of screen:" + (points * CenterModifier * (90 - Mathf.Clamp(center, 0, 90))/90));
+        picValue = picValue + (points * CenterModifier * (1 - Mathf.Clamp(center, 0 , 90))/90);
+
+        //How close you are to facing eachother.
+        float facing = Math.Abs(Vector3.Dot(player.transform.forward, transform.forward));
+        //Debug.Log("Points for facing eachother:" + (points * FacingModifier * (1 - facing)));
+        picValue = picValue + (points * FacingModifier * (1 - facing*2));
+
         return picValue;
     }
 }

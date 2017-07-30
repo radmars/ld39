@@ -1,100 +1,41 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Album : MonoBehaviour
 {
-    public ArrowButton left;
-    public ArrowButton right;
-    public TextMesh nameText;
-    public TextMesh shotText;
-
     // TODO: Repalce INT with picture/metadata
-    private Dictionary<string, int[]> shots;
-    private Dictionary<string, int> selected;
-    private string currentCritter;
-    private int[] currentShots;
-    private int visibleIndex;
+    public Dictionary<string, List<Shot>> shots = new Dictionary<string, List<Shot>>();
 
-    // Use this for initialization
-    void Start()
+    public Dictionary<string, Shot> selected = new Dictionary<string, Shot>();
+
+    public static Album FindMe()
     {
-        selected = new Dictionary<string, int>();
-        shots = new Dictionary<string, int[]>
-        {
-            { "Bubba Feet", new int[] { 1, 2, 3 } },
-            { "Robby Mars", new int[] { 1, 2 } }
-        };
-
-        ShowNextCritter();
+        return FindObjectOfType<Album>();
     }
 
-    bool ShowNextCritter()
+    public void Reset()
     {
-        if (shots.Count > 0)
-        {
-            currentCritter = shots.Keys.First();
-            currentShots = shots[currentCritter];
-            shots.Remove(currentCritter);
-            UpdateText();
-            return true;
-        }
-        return false;
+        shots.Clear();
+        selected.Clear();
     }
 
-    float lastScroll;
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public void Awake()
     {
-        float x = GetFurthestAxis("Horizontal", "Mouse X");
-        if (!Mathf.Approximately(0f, x) && Time.fixedTime - lastScroll > .250)
+        DontDestroyOnLoad(this);
+        if (FindObjectsOfType(GetType()).Length > 1)
         {
-            Go(x > 0);
-            lastScroll = Time.fixedTime;
-        }
-
-        if(Input.GetButton("Fire1"))
-        {
-            selected.Add(currentCritter, currentShots[visibleIndex]);
-            if(!ShowNextCritter())
-            {
-                Debug.Log("SHOW THE SCORE SCREEN");
-            }
+            Destroy(gameObject);
         }
     }
 
-    void Go(bool next)
+    internal void AddShot(Critter critter, Shot s)
     {
-        if (next)
+        if(!shots.ContainsKey(critter.name))
         {
-            right.Flash();
-            visibleIndex++;
+            shots[critter.name] = new List<Shot>();
         }
-        else
-        {
-            left.Flash();
-            visibleIndex--;
-        }
-        if(visibleIndex < 0 )
-        {
-            visibleIndex = currentShots.Length - 1;
-        }
-        visibleIndex %= currentShots.Length;
-        UpdateText();
-    }
-
-    void UpdateText()
-    {
-        nameText.text = currentCritter;
-        shotText.text = "" + (visibleIndex + 1) + "/" + currentShots.Length;
-    }
-
-    float GetFurthestAxis(string a, string b)
-    {
-        float aa = Input.GetAxis(a);
-        float ba = Input.GetAxis(b);
-        return (Mathf.Abs(aa) < Mathf.Abs(ba)) ? ba : aa;
+        shots[critter.name].Add(s);
     }
 }
