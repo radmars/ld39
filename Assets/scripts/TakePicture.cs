@@ -23,7 +23,7 @@ public class TakePicture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Input.GetMouseButtonDown(0) || !Input.GetButtonDown("Fire1"))
+        if (!Input.GetButtonDown("Fire1"))
             return;
 
         Debug.Log("Click");
@@ -52,7 +52,6 @@ public class TakePicture : MonoBehaviour
             }
 
             album.AddShot(bestCrit, bestShot);
-            //SceneManager.LoadScene("shot-selector");
             Debug.Log("That picture of a " + bestCrit.name + " would be worth: " + bestCrit.CalculatePoints(camera, visibleCritters.Count()) + " points");
         }
     }

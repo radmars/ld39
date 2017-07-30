@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BatteryAnimator : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class BatteryAnimator : MonoBehaviour
         if (spriteIndex >= 0)
         {
             r.sprite = sprites[spriteIndex];
+        }
+        else
+        {
+            SceneManager.LoadScene("shot-selector");
         }
     }
 }
