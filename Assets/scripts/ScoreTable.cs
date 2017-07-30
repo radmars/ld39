@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreTable : MonoBehaviour
@@ -15,8 +14,8 @@ public class ScoreTable : MonoBehaviour
         double total = 0;
         foreach (var critter in album.selected.Keys)
         {
-            finalText += critter + ": $" + album.selected[critter].value + "\n";
-            total += album.selected[critter].value;
+            finalText += critter + ": $" + album.selected[critter].score.total + "\n";
+            total += album.selected[critter].score.total;
         }
         scoreTableText.text = finalText;
         totalText.text = "" + total;

@@ -5,14 +5,14 @@ using System;
 
 public class Critter : MonoBehaviour
 {
-    public string name;
-    public double points;
+    public float points;
 
-    public double DistanceModifier = 1;
+    public float DistanceModifier = 1;
 
-    public double CenterModifier = 1;
+    public float CenterModifier = 1;
 
-    public double FacingModifier = 1;
+    public float FacingModifier = 1;
+
     private void Start()
     {
         //GetComponent<MeshRenderer>().enabled = false;
@@ -30,7 +30,7 @@ public class Critter : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = true;
     }
 
-    public double CalculatePoints(GameObject player, int numObjs)
+    public ShotScore CalculatePoints(GameObject player, int numObjs)
     {
         var picValue = points;
 
@@ -52,6 +52,14 @@ public class Critter : MonoBehaviour
         //Debug.Log("Points for facing eachother:" + (points * FacingModifier * (1 - facing)));
         picValue = picValue + (points * FacingModifier * (1 - facing*2));
 
-        return picValue * (1 + (0.2 * numObjs));
+        float total = picValue * (1f + (0.2f * numObjs));
+
+        return new ShotScore()
+        {
+            total = total,
+            facing = facing,
+            center = center,
+            distance = distance,
+        };
     }
 }
