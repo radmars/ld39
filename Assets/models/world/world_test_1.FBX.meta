@@ -22,6 +22,15 @@ ModelImporter:
     100028: world_1
     100030: world_2
     100032: world_3
+    100034: Mesh000
+    100036: Mesh012
+    100038: Mesh013
+    100040: Mesh014
+    100042: Mesh015
+    100044: Mesh016
+    100046: Mesh017
+    100048: Omni001
+    100050: tunnel
     400000: grid1
     400002: grid10
     400004: grid2
@@ -39,6 +48,15 @@ ModelImporter:
     400028: world_1
     400030: world_2
     400032: world_3
+    400034: Mesh000
+    400036: Mesh012
+    400038: Mesh013
+    400040: Mesh014
+    400042: Mesh015
+    400044: Mesh016
+    400046: Mesh017
+    400048: Omni001
+    400050: tunnel
     2300000: grid1
     2300002: grid10
     2300004: grid2
@@ -56,6 +74,14 @@ ModelImporter:
     2300028: world_1
     2300030: world_2
     2300032: world_3
+    2300034: Mesh000
+    2300036: Mesh012
+    2300038: Mesh013
+    2300040: Mesh014
+    2300042: Mesh015
+    2300044: Mesh016
+    2300046: Mesh017
+    2300048: tunnel
     3300000: grid1
     3300002: grid10
     3300004: grid2
@@ -73,6 +99,14 @@ ModelImporter:
     3300028: world_1
     3300030: world_2
     3300032: world_3
+    3300034: Mesh000
+    3300036: Mesh012
+    3300038: Mesh013
+    3300040: Mesh014
+    3300042: Mesh015
+    3300044: Mesh016
+    3300046: Mesh017
+    3300048: tunnel
     4300000: start
     4300002: grid1
     4300004: grid2
@@ -89,7 +123,16 @@ ModelImporter:
     4300026: world_1
     4300028: world_3
     4300030: world_2
+    4300032: tunnel
+    4300034: Mesh012
+    4300036: Mesh013
+    4300038: Mesh014
+    4300040: Mesh015
+    4300042: Mesh016
+    4300044: Mesh017
+    4300046: Mesh000
     9500000: //RootNode
+    10800000: Omni001
   materials:
     importMaterials: 1
     materialName: 0
