@@ -21,6 +21,8 @@ public class RailMover : MonoBehaviour
 
     private bool isCompleted;
 
+    public bool grounded;
+
 
 
     private void Update()
@@ -95,7 +97,7 @@ public class RailMover : MonoBehaviour
             }
         }
 
-        transform.position = rail.PositionOnRail(currentSeg, transition, mode);
+        transform.position = rail.PositionOnRail(currentSeg, transition, mode, grounded);
         transform.rotation = rail.Orientation(currentSeg, transition);
     }
 }
