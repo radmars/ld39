@@ -8,13 +8,13 @@ public class TakePicture : MonoBehaviour
 {
     private IEnumerable<Critter> critters;
     private IEnumerable<Critter> visibleCritters;
-    private Camera camera;
+    private GameObject camera;
     private Album album;
 
     void Start()
     {
         album = Album.FindMe();
-        camera = GameObject.Find("Rover Camera").GetComponent<Camera>();
+        camera = GameObject.Find("Rover Camera");
         critters = GameObject.FindGameObjectsWithTag("Critter").Select(
             (gameObject) => gameObject.GetComponent<Critter>()
         );
@@ -28,7 +28,7 @@ public class TakePicture : MonoBehaviour
 
         Debug.Log("Click");
 
-        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), camera));
+        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), camera.GetComponent<Camera>()));
 
         if (visibleCritters.Count() > 0)
         {
@@ -36,10 +36,10 @@ public class TakePicture : MonoBehaviour
             {
                 var s = new Shot();
                 s.value = critter.CalculatePoints(gameObject);
-                s.snapshot = TakeSnapshot(camera);
+                s.snapshot = TakeSnapshot(camera.GetComponent<Camera>());
                 album.AddShot(critter, s);
-               // SceneManager.LoadScene("shot-selector");
-                Debug.Log("That picture would be worth: " + critter.CalculatePoints(gameObject) + " points you fuckhead!");
+                //SceneManager.LoadScene("shot-selector");
+                Debug.Log("That picture would be worth: " + critter.CalculatePoints(camera) + " points");
             }
         }
     }

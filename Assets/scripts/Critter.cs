@@ -8,9 +8,11 @@ public class Critter : MonoBehaviour
     public string name;
     public double points;
 
-    public double DistanceModifier = .02;
+    public double DistanceModifier = .0125;
 
-    public double FacingModifier = 5;
+    public double CenterModifier = .0125;
+
+    public double FacingModifier = 1;
     private void Start()
     {
         GetComponent<MeshRenderer>().enabled = false;
@@ -34,21 +36,21 @@ public class Critter : MonoBehaviour
 
         //Distance from player
         var distance = Vector3.Distance(transform.position, player.transform.position);
-       // Debug.Log("the distance is :" + distance);
+        Debug.Log("points for distance :" + (points * (DistanceModifier * (100 - distance))));
         if (distance < 25)
         {
-            picValue = picValue * (DistanceModifier * (100 - distance));
+            picValue = picValue + (points * (DistanceModifier * (100 - distance)));
         }
 
-        //how close they are to facing ecahother
+        //how close to center of the screen
+        float center = Math.Abs(Vector3.Angle(player.transform.forward, transform.position - player.transform.position));
+        Debug.Log("Points for Angle off from center of screen (the closer to 0 the better) :" + (points * CenterModifier * (90 - center)));
+        picValue = picValue + (points * CenterModifier * (90 - center));
 
-        //float facing = Math.Abs(Vector3.Angle(transform.forward, player.transform.position));
-        //Debug.Log("Facing eachother (the closer to 0 the better)? :" + facing);
-        //picValue = picValue * FacingModifier * (1 - facing);
-
-        float facing = Math.Abs(Vector3.Dot(transform.forward, player.transform.position));
-        //Debug.Log("Facing eachother (the closer to 0 the better)? :" + facing);
-        picValue = picValue * FacingModifier * (1 - facing);
+        //How close you are to facing eachother.
+        float facing = Math.Abs(Vector3.Dot(player.transform.forward, transform.forward));
+        Debug.Log("Points for facing eachother (the closer to 0 the better)? :" + (points * FacingModifier * (1 - facing)));
+        picValue = picValue + (points * FacingModifier * (1 - facing));
 
 
 
