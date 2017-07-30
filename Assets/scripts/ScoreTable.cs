@@ -21,7 +21,7 @@ public class ScoreTable : MonoBehaviour
         double total = 0;
         foreach (var shot in album.selected)
         {
-            finalText += shot.critter.name + ": $" + shot.score.total + "\n";
+            finalText += shot.critter + ": $" + shot.score.total + "\n";
             total += shot.score.total;
         }
         scoreTableText.text = finalText;
@@ -74,7 +74,7 @@ public class ScoreTable : MonoBehaviour
         var text = current.snapshot;
         snapshotRenderer.sprite = Sprite.Create(text, new Rect(0, 0, text.width, text.height), new Vector2(0.5f, 0.5f));
         snapshotRenderer.sprite.texture.filterMode = FilterMode.Point;
-        nameText.text = current.critter.name;
+        nameText.text = current.critter;
         scoreTableText.text = "SHOT RECIPT: \n";
         scoreTableText.text += "CENTERED: " + current.score.center + "\n";
         scoreTableText.text += "DISTANCE: " + current.score.distance + "\n";

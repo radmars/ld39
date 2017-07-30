@@ -2,7 +2,7 @@
 
 public struct Shot 
 {
-    public Critter critter;
+    public string critter;
     public Texture2D snapshot;
     public ShotScore score;
 }
