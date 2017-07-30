@@ -11,6 +11,8 @@ public class TakePicture : MonoBehaviour
     private GameObject camera;
     private Album album;
 
+    private int pictureCount = 0;
+
     void Start()
     {
         album = Album.FindMe();
@@ -23,12 +25,15 @@ public class TakePicture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(LayerMask.NameToLayer("Critters"));
         if (!Input.GetMouseButtonDown(0) || !Input.GetButtonDown("Fire1"))
             return;
 
         Debug.Log("Click");
+        pictureCount++;
 
         visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), camera.GetComponent<Camera>()));
+
 
         if (visibleCritters.Count() > 0)
         {
@@ -37,17 +42,17 @@ public class TakePicture : MonoBehaviour
             var bestShot = new Shot();
             bestShot.snapshot = TakeSnapshot(camera.GetComponent<Camera>());
             bestShot.value = 0;
-
+            Debug.Log(pictureCount + ": Visible critter count: " + visibleCritters.Count());
 
             //Iterate through each one and see which picture is the best
             foreach (var critter in visibleCritters)
-            {     
+            {
                 var s = new Shot();
                 s.value = critter.CalculatePoints(gameObject, visibleCritters.Count());
-                if(s.value > bestShot.value)
+                if (s.value > bestShot.value)
                 {
                     bestCrit = critter;
-                    bestShot.value = s.value;                   
+                    bestShot.value = s.value;
                 }
             }
 
@@ -69,7 +74,16 @@ public class TakePicture : MonoBehaviour
 
     public bool IsVisibleFrom(Renderer renderer, Camera camera)
     {
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
-        return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
+        Ray testHitRay = new Ray(camera.transform.position, (renderer.transform.position - camera.transform.position).normalized);
+        RaycastHit hit;
+        Physics.Raycast(testHitRay, out hit, 500f);
+        if (hit.transform.gameObject.tag == "Critter")
+        {
+            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+            return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
+        }
+
+        return false;
+        //
     }
 }

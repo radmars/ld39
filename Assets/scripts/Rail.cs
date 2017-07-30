@@ -33,7 +33,7 @@ public class Rail : MonoBehaviour
         }
         if (grounded)
         {
-            Physics.Raycast(new Ray(pos + Vector3.up, Vector3.down), out hit, float.PositiveInfinity);
+            Physics.Raycast(new Ray(pos + Vector3.up, Vector3.down), out hit, float.PositiveInfinity, 9 <<8);
             return hit.point;
         }
         else{
