@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wolf : Critter
+public class Gateway : Critter
 {
     private void Start(){
          //GetComponent<MeshRenderer>().enabled = false;
-         base.name = "Wolf";
+         base.name = "Gateway";
          base.points = 100;
     }
 }
