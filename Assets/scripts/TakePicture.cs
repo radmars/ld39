@@ -27,6 +27,7 @@ public class TakePicture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool selfie = false;
         if (Input.GetButton("Fire3"))
         {
             Debug.Log("should move camera Local rotation y is:  " + roverCamera.transform.localEulerAngles.y);
@@ -37,10 +38,13 @@ public class TakePicture : MonoBehaviour
                 Debug.Log("should move positive camera turn");
                 roverCamera.transform.localEulerAngles = new Vector3(roverCamera.transform.localEulerAngles.x, roverCamera.transform.localEulerAngles.y + 2f, roverCamera.transform.localEulerAngles.z);
             }
-            if (roverCamera.transform.localEulerAngles.y > 190f)
+            else if (roverCamera.transform.localEulerAngles.y > 190f)
             {
                 Debug.Log("should move negative camera turn");
                 roverCamera.transform.localEulerAngles = new Vector3(roverCamera.transform.localEulerAngles.x, roverCamera.transform.localEulerAngles.y - 2f, roverCamera.transform.localEulerAngles.z);
+            }
+            else{
+                selfie=true;
             }
         }
         else
@@ -82,7 +86,7 @@ public class TakePicture : MonoBehaviour
             var bestShot = visibleCritters.Select((critter) => new Shot()
             {
                 critter = critter.name,
-                score = critter.CalculatePoints(gameObject, visibleCount),
+                score = critter.CalculatePoints(gameObject, visibleCount, selfie),
                 snapshot = snapshot,
             }).OrderByDescending((shot) => shot.score.total).First();
 

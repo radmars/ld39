@@ -30,7 +30,7 @@ public class Critter : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = true;
     }
 
-    public ShotScore CalculatePoints(GameObject player, int numObjs)
+    public ShotScore CalculatePoints(GameObject player, int numObjs, bool selfie)
     {
         var picValue = points;
 
@@ -53,6 +53,9 @@ public class Critter : MonoBehaviour
         picValue = picValue + (points * FacingModifier * (1 - facing*2));
 
         float total = picValue * (1f + (0.2f * numObjs));
+        
+        if(selfie)
+            total = total *1.1f;
 
         return new ShotScore()
         {
@@ -60,6 +63,7 @@ public class Critter : MonoBehaviour
             facing = facing,
             center = center,
             distance = distance,
+            selfie = selfie,
         };
     }
 }

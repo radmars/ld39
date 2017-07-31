@@ -97,7 +97,7 @@ public class ScoreTable : MonoBehaviour
         scoreTableText.text += " CENTERED: \n  " + current.score.center + "\n";
         scoreTableText.text += " DISTANCE: \n  " + current.score.distance + "\n";
         scoreTableText.text += " FACING: \n  " + current.score.facing + "\n";
-        scoreTableText.text += " SELFIE: \n  " + "NOT YET " + "\n";
+        scoreTableText.text += " SELFIE: \n  " + current.score.selfie.ToString() + "\n";
         scoreTableText.text += " TOTAL: \n  " + current.score.total;
         scoreTableText.text = scoreTableText.text.ToUpper();
     }

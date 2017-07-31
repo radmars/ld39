@@ -13,4 +13,5 @@ public struct ShotScore
     internal float distance;
     internal float center;
     internal float facing;
+    internal bool selfie;
 }
