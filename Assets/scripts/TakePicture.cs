@@ -13,6 +13,8 @@ public class TakePicture : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip cameraSound;
 
+    private bool isSelfieMode = false;
+
     void Start()
     {
         album = Album.FindMe();
@@ -28,7 +30,10 @@ public class TakePicture : MonoBehaviour
     void Update()
     {
         bool selfie = false;
-        if (Input.GetButton("Fire3"))
+        if (Input.GetButtonDown("Fire3"))
+            isSelfieMode = !isSelfieMode;
+
+        if(isSelfieMode)
         {
             Debug.Log("should move camera Local rotation y is:  " + roverCamera.transform.localEulerAngles.y);
             if (roverCamera.transform.localPosition.z + 0.4f < cameraDefaultLoc.z + 3.1f)
