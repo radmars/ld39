@@ -10,6 +10,9 @@ public class TakePicture : MonoBehaviour
     private Album album;
     private BatteryAnimator battery;
     private Vector3 cameraDefaultLoc;
+    public AudioSource audioSource;
+    public AudioClip cameraSound;
+
     void Start()
     {
         album = Album.FindMe();
@@ -58,8 +61,12 @@ public class TakePicture : MonoBehaviour
                 }
             }
         }
+
         if (!Input.GetButtonDown("Fire1"))
             return;
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(cameraSound);
 
         battery.PhotoTaken();
 

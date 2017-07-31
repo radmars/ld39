@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Linq;
+using System.Collections;
 
 public class ScoreTable : MonoBehaviour
 {
@@ -69,12 +70,18 @@ public class ScoreTable : MonoBehaviour
             visibleIndex = album.selected.Count() - 1;
         }
 
-        audioSource.Stop();
-        audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+        StartCoroutine(PlayGreatSound());
 
         visibleIndex %= album.selected.Count();
         current = album.selected[visibleIndex];
         UpdateScreen();
+    }
+
+    IEnumerator PlayGreatSound()
+    {
+        yield return new WaitForSeconds(0.1f);
+        audioSource.Stop();
+        audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
     }
 
     void UpdateScreen()
@@ -85,13 +92,14 @@ public class ScoreTable : MonoBehaviour
             snapshotRenderer.sprite = Sprite.Create(text, new Rect(0, 0, text.width, text.height), new Vector2(0.5f, 0.5f));
             snapshotRenderer.sprite.texture.filterMode = FilterMode.Point;
         }
-        nameText.text = current.critter;
-        scoreTableText.text = "SHOT RECIPT: \n";
-        scoreTableText.text += "CENTERED: " + current.score.center + "\n";
-        scoreTableText.text += "DISTANCE: " + current.score.distance + "\n";
-        scoreTableText.text += "FACING: " + current.score.facing + "\n";
-        scoreTableText.text += "SELFIE: " + " NOT YET " + "\n";
-        scoreTableText.text += "TOTAL: " + current.score.total;
+        nameText.text = current.critter.ToUpper();
+        scoreTableText.text = "SHOT SUMMARY:  \n";
+        scoreTableText.text += " CENTERED: \n  " + current.score.center + "\n";
+        scoreTableText.text += " DISTANCE: \n  " + current.score.distance + "\n";
+        scoreTableText.text += " FACING: \n  " + current.score.facing + "\n";
+        scoreTableText.text += " SELFIE: \n  " + "NOT YET " + "\n";
+        scoreTableText.text += " TOTAL: \n  " + current.score.total;
+        scoreTableText.text = scoreTableText.text.ToUpper();
     }
 
     float GetFurthestAxis(string a, string b)

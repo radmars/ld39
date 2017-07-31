@@ -86,7 +86,7 @@ public class AlbumUI : MonoBehaviour
         var text = currentShots[visibleIndex].snapshot;
         snapshotRenderer.sprite = Sprite.Create(text, new Rect(0, 0, text.width, text.height), new Vector2(0.5f, 0.5f));
         snapshotRenderer.sprite.texture.filterMode = FilterMode.Point;
-        nameText.text = currentCritter;
+        nameText.text = currentCritter.ToUpper();
         shotText.text = "" + (visibleIndex + 1) + "/" + currentShots.Count();
     }
 

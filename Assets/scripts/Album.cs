@@ -23,7 +23,6 @@ public class Album : MonoBehaviour
 
     public void Awake()
     {
-
         /*
         selected.Add(new Shot()
         {

@@ -10,6 +10,8 @@ public class ArrowButton : MonoBehaviour
     public Sprite flash;
     private SpriteRenderer spriteRenderer;
     private int flashid;
+    public AudioClip tickSound;
+    public AudioSource source;
 
     // Use this for initialization
     void Start()
@@ -21,6 +23,8 @@ public class ArrowButton : MonoBehaviour
 
     internal void Flash()
     {
+        source.Stop();
+        source.PlayOneShot(tickSound);
         StartCoroutine(_Flash());
     }
 
