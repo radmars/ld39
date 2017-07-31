@@ -12,6 +12,9 @@ public class TakePicture : MonoBehaviour
     private Vector3 cameraDefaultLoc;
     public AudioSource audioSource;
     public AudioClip cameraSound;
+    private SpriteRenderer flash;
+    private float flashTimer = 0;
+    private float flashTimerInterval = 0.05f;
 
     private bool isSelfieMode = false;
 
@@ -24,11 +27,20 @@ public class TakePicture : MonoBehaviour
         critters = GameObject.FindGameObjectsWithTag("Critter").Select(
             (gameObject) => gameObject.GetComponent<Critter>()
         );
+        flash = GameObject.Find("Flash").GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (flashTimer >= 0.0f)
+        {
+            Color flashColor = flash.color;
+            flashColor.a = flashTimer;
+            flash.color = flashColor;
+            flashTimer -= flashTimerInterval;
+        }
+
         bool selfie = false;
         if (Input.GetButtonDown("Fire3"))
             isSelfieMode = !isSelfieMode;
@@ -76,6 +88,7 @@ public class TakePicture : MonoBehaviour
 
         audioSource.Stop();
         audioSource.PlayOneShot(cameraSound);
+        flashTimer = 1.0f;
 
         battery.PhotoTaken();
 
