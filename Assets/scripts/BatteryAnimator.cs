@@ -48,7 +48,6 @@ public class BatteryAnimator : MonoBehaviour
 
         if (totalEnergyUsePercent > .9f)
         {
-            Debug.Log("energy " + totalEnergyUsePercent);
             music.pitch = (1.0f - totalEnergyUsePercent) * 5.0f + .5f;
         }
 
