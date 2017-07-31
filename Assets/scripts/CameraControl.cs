@@ -24,6 +24,7 @@ public class CameraControl : MonoBehaviour
         if (!ShowCurser)
         {
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }        
     }
     
