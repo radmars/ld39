@@ -15,9 +15,11 @@ public class BatteryAnimator : MonoBehaviour
     public bool singing = false;
     private float singDrainAmount = 11;
     private float totalEnergyDrain = 0;
+    private AudioSource music;
 
     public void Start()
     {
+        music = GameObject.Find("Musicbox").GetComponent<AudioSource>();
         startTime = Time.fixedTime;
         lastTime = startTime;
         r = GetComponent<SpriteRenderer>();
@@ -37,11 +39,18 @@ public class BatteryAnimator : MonoBehaviour
     {
         totalEnergyDrain += (Time.fixedTime - lastTime) * (energyPerSecond + getSingDrain());
         lastTime = Time.fixedTime;
-        int spriteIndex = sprites.Length - (int)(
-            (
+        float totalEnergyUsePercent = (
                 totalEnergyDrain
                 + photos * photoEnergyCost
-            ) / totalEnergy * sprites.Length) - 1;
+            ) / totalEnergy;
+        int spriteIndex = sprites.Length - (int)(
+             totalEnergyUsePercent * sprites.Length) - 1;
+
+        if (totalEnergyUsePercent > .9f)
+        {
+            Debug.Log("energy " + totalEnergyUsePercent);
+            music.pitch = (1.0f - totalEnergyUsePercent) * 5.0f + .5f;
+        }
 
         if (spriteIndex >= 0)
         {
