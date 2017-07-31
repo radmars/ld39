@@ -6,7 +6,7 @@ public class Robogirl : Critter
 {
     private void Start(){
          //GetComponent<MeshRenderer>().enabled = false;
-         base.name = "Robot";
+         base.name = "Robogirl";
          base.points = 100;
     }
 }
