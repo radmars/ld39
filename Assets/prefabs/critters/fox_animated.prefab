@@ -35,9 +35,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4118722641044264}
   - component: {fileID: 137486114468548346}
+  - component: {fileID: 114414308170367592}
+  - component: {fileID: 65479807207596052}
   m_Layer: 9
   m_Name: fox
-  m_TagString: Untagged
+  m_TagString: Critter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,8 +278,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4028227918049902}
   - component: {fileID: 95818798613115772}
-  - component: {fileID: 114165438650199852}
-  - component: {fileID: 65087224163010810}
   m_Layer: 9
   m_Name: fox_animated
   m_TagString: Critter
@@ -681,12 +681,12 @@ Transform:
   m_Father: {fileID: 4739739588838204}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65087224163010810
+--- !u!65 &65479807207596052
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1704097846713586}
+  m_GameObject: {fileID: 1118109825845444}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -710,12 +710,12 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114165438650199852
+--- !u!114 &114414308170367592
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1704097846713586}
+  m_GameObject: {fileID: 1118109825845444}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef5f5e7d41d17f442bdbf0d920568889, type: 3}

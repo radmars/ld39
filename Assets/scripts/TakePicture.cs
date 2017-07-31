@@ -79,7 +79,7 @@ public class TakePicture : MonoBehaviour
 
         battery.PhotoTaken();
 
-        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<MeshRenderer>(), roverCamera.GetComponent<Camera>()));
+        visibleCritters = critters.Where((critter) => IsVisibleFrom(critter.GetComponent<Renderer>(), roverCamera.GetComponent<Camera>()));
 
         if (visibleCritters.Count() > 0)
         {
