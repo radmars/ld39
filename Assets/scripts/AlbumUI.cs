@@ -12,6 +12,8 @@ public class AlbumUI : MonoBehaviour
     public TextMesh shotText;
     public SpriteRenderer snapshotRenderer;
     private Album album;
+    public AudioSource source;
+    public AudioClip selectSound;
 
     private string currentCritter;
     private List<Shot> currentShots;
@@ -53,6 +55,8 @@ public class AlbumUI : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            source.Stop();
+            source.PlayOneShot(selectSound);
             album.selected.Add(currentShots[visibleIndex]);
             if (!ShowNextCritter())
             {
