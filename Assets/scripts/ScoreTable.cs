@@ -30,7 +30,7 @@ public class ScoreTable : MonoBehaviour
             total += shot.score.total;
         }
         scoreTableText.text = finalText;
-        totalText.text = "" + total;
+        totalText.text = "TOTAL: " + total.ToString("0.00");
 
         var shots = album.selected;
         visibleIndex = 0;
@@ -94,11 +94,11 @@ public class ScoreTable : MonoBehaviour
         }
         nameText.text = current.critter.ToUpper();
         scoreTableText.text = "SHOT SUMMARY:  \n";
-        scoreTableText.text += " CENTERED: \n  " + current.score.center + "\n";
-        scoreTableText.text += " DISTANCE: \n  " + current.score.distance + "\n";
-        scoreTableText.text += " FACING: \n  " + current.score.facing + "\n";
+        scoreTableText.text += " CENTERED: \n  " + current.score.center.ToString("0.00") + "\n";
+        scoreTableText.text += " DISTANCE: \n  " + current.score.distance.ToString("0.00") + "\n";
+        scoreTableText.text += " FACING: \n  " + current.score.facing.ToString("0.00") + "\n";
         scoreTableText.text += " SELFIE: \n  " + current.score.selfie.ToString() + "\n";
-        scoreTableText.text += " TOTAL: \n  " + current.score.total;
+        scoreTableText.text += " TOTAL: \n  " + current.score.total.ToString("0.00");
         scoreTableText.text = scoreTableText.text.ToUpper();
     }
 
