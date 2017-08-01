@@ -89,6 +89,7 @@ public class TakePicture : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(cameraSound);
         flashTimer = 1.0f;
+        Cursor.lockState = CursorLockMode.Locked;
 
         battery.PhotoTaken();
 
