@@ -26,7 +26,7 @@ public class TakePicture : MonoBehaviour
         cameraDefaultLoc = roverCamera.transform.localPosition;
         critters = GameObject.FindGameObjectsWithTag("Critter").Select(
             (gameObject) => gameObject.GetComponent<Critter>()
-        );
+        ).Where((critter) => critter!=null);;
         flash = GameObject.Find("Flash").GetComponent<SpriteRenderer>();
     }
 
