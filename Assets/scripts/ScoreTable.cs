@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ScoreTable : MonoBehaviour
 {
@@ -17,9 +18,11 @@ public class ScoreTable : MonoBehaviour
 
     public AudioClip[] clips;
     private AudioSource audioSource;
+    private float startTime;
 
     void Awake()
     {
+        startTime = Time.fixedTime;
         audioSource = GetComponent<AudioSource>();
         album = Album.FindMe();
         var finalText = "";
@@ -50,6 +53,10 @@ public class ScoreTable : MonoBehaviour
         {
             Go(x > 0);
             lastScroll = Time.fixedTime;
+        }
+        if(Input.GetButtonDown("Fire2") && Time.fixedTime - startTime > 1.5)
+        {
+            SceneManager.LoadScene("splash-menu");
         }
     }
 
