@@ -18,12 +18,14 @@ public class AlbumUI : MonoBehaviour
     private string currentCritter;
     private List<Shot> currentShots;
     private int visibleIndex;
+    float startTime;
 
     // Use this for initialization
     void Start()
     {
         album = Album.FindMe();
         ShowNextCritter();
+        startTime = Time.fixedTime;
     }
 
     bool ShowNextCritter()
@@ -53,7 +55,7 @@ public class AlbumUI : MonoBehaviour
             lastScroll = Time.fixedTime;
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.fixedTime - startTime > 1.5)
         {
             source.Stop();
             source.PlayOneShot(selectSound);
