@@ -18,6 +18,11 @@ public class Rail : MonoBehaviour
     private void Start()
     {
         nodes = GetComponentsInChildren<Transform>().Where(q => q.tag == "Nodes").ToArray();
+
+        for(int i = 0; i< nodes.Length-1; i++)
+        {
+            nodes[i].transform.LookAt(nodes[i+1]);
+        }
     }
 
     public Vector3 PositionOnRail(int seg, float ratio, PlayMode mode, bool grounded)
@@ -103,7 +108,7 @@ public class Rail : MonoBehaviour
         return new Vector3(x, y, z);
     }
 
-    public Quaternion Orientation(int seg, float ratio)
+    public Quaternion Orientation(int seg, float ratio, bool isReversed)
     {
         Quaternion q1 = nodes[seg].rotation;
         Quaternion q2 = nodes[seg + 1].rotation;

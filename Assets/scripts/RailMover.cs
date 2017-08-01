@@ -116,6 +116,6 @@ public class RailMover : MonoBehaviour
         }
 
         transform.position = rail.PositionOnRail(currentSeg, transition, mode, grounded);
-        transform.rotation = rail.Orientation(currentSeg, transition);
+        transform.rotation = rail.Orientation(currentSeg, transition, isReversed);
     }
 }
