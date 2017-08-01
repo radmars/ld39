@@ -112,6 +112,11 @@ public class Rail : MonoBehaviour
     {
         Quaternion q1 = nodes[seg].rotation;
         Quaternion q2 = nodes[seg + 1].rotation;
+        
+          if(isReversed)
+        {
+            return Quaternion.Inverse(Quaternion.Lerp(q1, q2, ratio));
+        }
 
         return Quaternion.Lerp(q1, q2, ratio);
     }
